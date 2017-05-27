@@ -1,0 +1,24 @@
+{
+  "name": "weft",
+  "version": "1.0.0",
+  "description": "NodeJS API Wrapper for Google Web Fonts",
+  "main": "index.js",
+  "scripts": {
+    "test": "xo && ava --verbose"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oknoorap/weft.git"
+  },
+  "keywords": [
+    "google-fonts",
+    "api-wrapper",
+    "nodejs"
+  ],
+  "author": "oknoorap",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/oknoorap/weft/issues"
+  },
+  "homepage": "https://github.com/oknoorap/weft#readme"
+}
