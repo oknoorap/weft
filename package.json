@@ -20,5 +20,14 @@
   "bugs": {
     "url": "https://github.com/oknoorap/weft/issues"
   },
-  "homepage": "https://github.com/oknoorap/weft#readme"
+  "homepage": "https://github.com/oknoorap/weft#readme",
+  "devDependencies": {
+    "ava": "^0.19.1",
+    "xo": "^0.18.2"
+  },
+  "xo": {
+    "esnext": true,
+    "space": true,
+    "semicolon": false
+  }
 }
