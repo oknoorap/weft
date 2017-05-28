@@ -1,6 +1,6 @@
 {
   "name": "weft",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "NodeJS API Wrapper for Google Web Fonts",
   "main": "index.js",
   "scripts": {
