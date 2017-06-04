@@ -78,8 +78,10 @@ class Weft {
         if (data.items) {
           data.items = data.items.map(item => {
             if (item.variants) {
-              item.prettyVariants = item.variants.map(key => {
-                return this.variants[key]
+              item.variantsFormat = item.variants.map(key => {
+                const format = this.variants[key]
+                format.key = key
+                return format
               })
             }
             return item
