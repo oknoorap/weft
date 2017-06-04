@@ -75,6 +75,14 @@ class Weft {
       axios.get(requestUrl).then(response => {
         const {data} = response
         if (data.items) {
+          data.items = data.items.map(item => {
+            if (item.variants) {
+              item.prettyVariants = item.variants.map(key => {
+                return this.variants[key]
+              })
+            }
+            return item
+          })
           resolve(data.items)
         }
       }).catch(err => {
