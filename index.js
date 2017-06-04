@@ -35,7 +35,8 @@ class Weft {
           key += 'italic'
         }
 
-        this.variants[key] = variant[i].name
+        this.variants[key] = variant[i]
+        this.variants[key].camelize = i
       }
     }
 
