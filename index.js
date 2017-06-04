@@ -31,12 +31,16 @@ class Weft {
     for (const i in variant) {
       if (Object.prototype.hasOwnProperty.call(variant, i)) {
         let key = variant[i].alias || variant[i].value
+        let mini = variant[i].value
+
         if (i !== 'italic' && variant[i].italic) {
           key += 'italic'
+          mini += 'i'
         }
 
         this.variants[key] = variant[i]
         this.variants[key].camelize = i
+        this.variants[key].mini = mini
       }
     }
 
