@@ -94,22 +94,22 @@ class Weft {
     })
   }
 
-  view(fontName) {
+  view(fontName, fields = {}) {
     if (!fontName) {
       throw new Error('Font name is missing')
     }
 
-    const fields = {
+    const defaultFields = extend({
       category: true,
       files: true,
       lastModified: true,
       subsets: true,
       variants: true,
       version: true
-    }
+    }, fields)
 
     return new Promise((resolve, reject) => {
-      this.list(fields).then(result => {
+      this.list(defaultFields).then(result => {
         const filteredFont = result.filter(item => item.family.toLowerCase() === fontName.toLowerCase())
         if (filteredFont.length > 0) {
           resolve(filteredFont[0])
