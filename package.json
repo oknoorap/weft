@@ -31,8 +31,8 @@
     "semicolon": false
   },
   "dependencies": {
-    "axios": "^0.16.1",
-    "fuse.js": "^3.0.3",
+    "axios": "^0.16.2",
+    "fuse.js": "^3.0.4",
     "lodash.merge": "^4.6.0"
   }
 }
