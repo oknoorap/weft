@@ -9,13 +9,13 @@ test.before(() => {
 
 weft.apiKey(process.env.API_KEY)
 
-test('apikey is set', t => {
+test('Api Key is set', t => {
   const apiKey = weft.apiKey()
   t.not(apiKey, '')
 })
 
 const list = weft.list()
-test('list of fonts request should be succeed', async t => {
+test('List of fonts request should be succeed', async t => {
   await list.then(result => {
     t.true(Array.isArray(result))
     t.true(result.length > 0)
@@ -26,7 +26,7 @@ test('list of fonts request should be succeed', async t => {
 })
 
 const trendingFonts = weft.list({}, weft.sortBy.TRENDING)
-test('list of trending fonts request should be succeed', async t => {
+test('List of trending fonts request should be succeed', async t => {
   await trendingFonts.then(result => {
     t.true(Array.isArray(result))
     t.true(result.length > 0)
@@ -41,7 +41,7 @@ const listWithFields = weft.list({
   variants: true,
   version: true
 })
-test('list of fonts request with complete fields should be succeed', async t => {
+test('List of fonts request with complete fields should be succeed', async t => {
   await listWithFields.then(result => {
     result.forEach(item => {
       t.true(Array.isArray(item.variants))
@@ -110,7 +110,7 @@ test('Search "Montserrat" with search criteria subset: vietnamese, variant: blac
   })
 })
 
-test('embed url should be valid', t => {
+test('Embed url should be valid', t => {
   t.is(weft.embedUrl('Montserrat', {
     subsets: {
       vietnamese: true
@@ -120,4 +120,8 @@ test('embed url should be valid', t => {
       bold: true
     }
   }), 'https://fonts.googleapis.com/css?family=Montserrat:400i,700&subset=vietnamese')
+})
+
+test('Embed url with string should be valid', t => {
+  t.is(weft.embedUrl('Montserrat', '400i,700', 'vietnamese'), 'https://fonts.googleapis.com/css?family=Montserrat:400i,700&subset=vietnamese')
 })

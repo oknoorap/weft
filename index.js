@@ -31,11 +31,16 @@ class Weft {
     for (const i in variant) {
       if (Object.prototype.hasOwnProperty.call(variant, i)) {
         let key = variant[i].alias || variant[i].value
+        let mini = variant[i].value
+
         if (i !== 'italic' && variant[i].italic) {
           key += 'italic'
+          mini += 'i'
         }
 
-        this.variants[key] = variant[i].name
+        this.variants[key] = variant[i]
+        this.variants[key].camelcase = i
+        this.variants[key].mini = mini
       }
     }
 
@@ -77,8 +82,10 @@ class Weft {
         if (data.items) {
           data.items = data.items.map(item => {
             if (item.variants) {
-              item.prettyVariants = item.variants.map(key => {
-                return this.variants[key]
+              item.variantsFormat = item.variants.map(key => {
+                const format = this.variants[key]
+                format.key = key
+                return format
               })
             }
             return item
@@ -91,22 +98,22 @@ class Weft {
     })
   }
 
-  view(fontName) {
+  view(fontName, fields = {}) {
     if (!fontName) {
       throw new Error('Font name is missing')
     }
 
-    const fields = {
+    const defaultFields = extend({
       category: true,
       files: true,
       lastModified: true,
       subsets: true,
       variants: true,
       version: true
-    }
+    }, fields)
 
     return new Promise((resolve, reject) => {
-      this.list(fields).then(result => {
+      this.list(defaultFields).then(result => {
         const filteredFont = result.filter(item => item.family.toLowerCase() === fontName.toLowerCase())
         if (filteredFont.length > 0) {
           resolve(filteredFont[0])
@@ -216,15 +223,30 @@ class Weft {
     })
   }
 
-  embedUrl(fontName, options = {}) {
-    const _options = extend({
-      subsets: extend(defaultSubsets, options.subsets),
-      variants: extend(defaultSubsets, options.varians)
-    }, options)
-
+  embedUrl(fontName, options = {}, subsets = '') {
+    let _options
+    let skip = false
     const query = {}
 
-    if (_options.variants) {
+    if (typeof options === 'string' && typeof subsets === 'string') {
+      skip = true
+      query.family = fontName
+
+      if (options.length > 0) {
+        query.family += ':' + options
+      }
+
+      if (subsets.length > 0) {
+        query.subset = subsets
+      }
+    } else {
+      _options = extend({
+        subsets: extend(defaultSubsets, options.subsets),
+        variants: extend(defaultSubsets, options.variants)
+      }, options)
+    }
+
+    if (!skip && _options.variants) {
       const _variants = []
       for (const key in _options.variants) {
         if (Object.prototype.hasOwnProperty.call(_options.variants, key) &&
@@ -249,7 +271,7 @@ class Weft {
       }
     }
 
-    if (_options.subsets) {
+    if (!skip && _options.subsets) {
       const _subsets = []
       for (const key in _options.subsets) {
         if (Object.prototype.hasOwnProperty.call(_options.subsets, key) &&
