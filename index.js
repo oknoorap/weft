@@ -39,7 +39,7 @@ class Weft {
         }
 
         this.variants[key] = variant[i]
-        this.variants[key].camelize = i
+        this.variants[key].camelcase = i
         this.variants[key].mini = mini
       }
     }
