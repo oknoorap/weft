@@ -206,6 +206,10 @@ class Weft {
             const itemByFields = {}
 
             if (_options.fields) {
+              if (_options.fields.variants) {
+                _options.fields.variantsFormat = true
+              }
+
               for (const key in _options.fields) {
                 if (Object.prototype.hasOwnProperty.call(_options.fields, key) &&
                   _options.fields[key]) {
