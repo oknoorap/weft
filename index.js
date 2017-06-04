@@ -223,15 +223,30 @@ class Weft {
     })
   }
 
-  embedUrl(fontName, options = {}) {
-    const _options = extend({
-      subsets: extend(defaultSubsets, options.subsets),
-      variants: extend(defaultSubsets, options.varians)
-    }, options)
-
+  embedUrl(fontName, options = {}, subsets = '') {
+    let _options
+    let skip = false
     const query = {}
 
-    if (_options.variants) {
+    if (typeof options === 'string' && typeof subsets === 'string') {
+      skip = true
+      query.family = fontName
+
+      if (options.length > 0) {
+        query.family += ':' + options
+      }
+
+      if (subsets.length > 0) {
+        query.subset = subsets
+      }
+    } else {
+      _options = extend({
+        subsets: extend(defaultSubsets, options.subsets),
+        variants: extend(defaultSubsets, options.variants)
+      }, options)
+    }
+
+    if (!skip && _options.variants) {
       const _variants = []
       for (const key in _options.variants) {
         if (Object.prototype.hasOwnProperty.call(_options.variants, key) &&
@@ -256,7 +271,7 @@ class Weft {
       }
     }
 
-    if (_options.subsets) {
+    if (!skip && _options.subsets) {
       const _subsets = []
       for (const key in _options.subsets) {
         if (Object.prototype.hasOwnProperty.call(_options.subsets, key) &&
