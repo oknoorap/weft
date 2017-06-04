@@ -26,6 +26,19 @@ class Weft {
     this.$apiKey = ''
     this.sortBy = sortBy
     this.categories = categories
+
+    this.variants = {}
+    for (const i in variant) {
+      if (Object.prototype.hasOwnProperty.call(variant, i)) {
+        let key = variant[i].alias || variant[i].value
+        if (i !== 'italic' && variant[i].italic) {
+          key += 'italic'
+        }
+
+        this.variants[key] = variant[i].name
+      }
+    }
+
     return this
   }
 
@@ -62,6 +75,14 @@ class Weft {
       axios.get(requestUrl).then(response => {
         const {data} = response
         if (data.items) {
+          data.items = data.items.map(item => {
+            if (item.variants) {
+              item.prettyVariants = item.variants.map(key => {
+                return this.variants[key]
+              })
+            }
+            return item
+          })
           resolve(data.items)
         }
       }).catch(err => {

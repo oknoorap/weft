@@ -58,67 +58,87 @@ const defaultVariants = {
 
 const variant = {
   thin: {
-    value: 100
+    value: 100,
+    name: 'Thin'
   },
   thinItalic: {
     value: 100,
-    italic: true
+    italic: true,
+    name: 'Thin Italic'
   },
   extraLight: {
-    value: 200
+    value: 200,
+    name: 'Extra Light'
   },
   extraLightItalic: {
     value: 200,
-    italic: true
+    italic: true,
+    name: 'Extra Light Italic'
   },
   light: {
-    value: 300
+    value: 300,
+    name: 'Light'
   },
   lightItalic: {
     value: 300,
-    italic: true
+    italic: true,
+    name: 'Light Italic'
   },
   regular: {
-    value: 400
+    value: 400,
+    alias: 'regular',
+    name: 'Regular'
   },
   italic: {
     value: 400,
-    italic: true
+    italic: true,
+    alias: 'italic',
+    name: 'Italic'
   },
   medium: {
-    value: 500
+    value: 500,
+    name: 'Medium'
   },
   mediumItalic: {
     value: 500,
-    italic: true
+    italic: true,
+    name: 'Medium Italic'
   },
   semiBold: {
-    value: 600
+    value: 600,
+    name: 'Semi Bold'
   },
   semiBoldItalic: {
     value: 600,
-    italic: true
+    italic: true,
+    name: 'Semi Bold Italic'
   },
   bold: {
-    value: 700
+    value: 700,
+    name: 'Bold'
   },
   boldItalic: {
     value: 700,
-    italic: true
+    italic: true,
+    name: 'Bold Italic'
   },
   extraBold: {
-    value: 800
+    value: 800,
+    name: 'Extra Bold'
   },
   extraBoldItalic: {
     value: 800,
-    italic: true
+    italic: true,
+    name: 'Extra Bold Italic'
   },
   black: {
-    value: 900
+    value: 900,
+    name: 'Black'
   },
   blackItalic: {
     value: 900,
-    italic: true
+    italic: true,
+    name: 'Black Italic'
   }
 }
 
