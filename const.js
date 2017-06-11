@@ -1,5 +1,5 @@
 const apiUrl = 'https://www.googleapis.com/webfonts/v1/webfonts?'
-const fontUrl = 'https://fonts.googleapis.com/css?'
+const fontUrl = '://fonts.googleapis.com/css?'
 const defaultFields = {
   category: false,
   files: false,
