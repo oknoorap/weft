@@ -119,9 +119,9 @@ test('Embed url should be valid', t => {
       italic: true,
       bold: true
     }
-  }), 'https://fonts.googleapis.com/css?family=Montserrat:400i,700&subset=vietnamese')
+  }), '//fonts.googleapis.com/css?family=Montserrat:400i,700&subset=vietnamese')
 })
 
 test('Embed url with string should be valid', t => {
-  t.is(weft.embedUrl('Montserrat', '400i,700', 'vietnamese'), 'https://fonts.googleapis.com/css?family=Montserrat:400i,700&subset=vietnamese')
+  t.is(weft.embedUrl('Montserrat', '400i,700', 'vietnamese'), '//fonts.googleapis.com/css?family=Montserrat:400i,700&subset=vietnamese')
 })
