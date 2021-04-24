@@ -4,7 +4,7 @@
   "description": "NodeJS API Wrapper for Google Web Fonts",
   "main": "index.js",
   "scripts": {
-    "test": "xo && ava --verbose"
+    "test": "ava --verbose"
   },
   "repository": {
     "type": "git",
