@@ -14,7 +14,7 @@ const {
 } = require("./const");
 
 const arrayContainsArray = (superset, subset) => {
-  return subset.every((value) => superset.indexOf(value) >= 0);
+  return subset.every((value) => superset.includes(value));
 };
 
 const extend = (source, modifier) => {
@@ -171,7 +171,7 @@ class Weft {
             }).search(query);
           }
 
-          const searchCriteria = result.filter((item) => {
+          const searchCriteria = result.filter(({ item }) => {
             let matchCategory = true;
             let matchSubset = true;
             let matchVariant = true;
@@ -226,7 +226,7 @@ class Weft {
 
           let searchResult = [];
           if (searchCriteria.length > 0) {
-            searchResult = searchCriteria.map((item) => {
+            searchResult = searchCriteria.map(({ item }) => {
               const itemByFields = {};
 
               if (_options.fields) {
